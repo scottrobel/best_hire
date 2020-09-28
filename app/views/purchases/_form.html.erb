@@ -1,0 +1,6 @@
+<%= form_with(model: purchase, local: true) do |form| %>
+  <%= form.hidden_field :plan_type %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

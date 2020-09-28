@@ -1,0 +1,28 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1>Jobs</h1>
+  </div>
+</section>
+<div class="d-flex flex-row justify-content-center flex-wrap">
+  <% @jobs.each do |job| %>
+    <div class="card m-2" style="width: 18rem;">
+      <%= image_tag(url_for(job.company_logo), class: "card-img-top") %>
+      <div class="card-body">
+        <%= link_to url_for(job), class: "job-link" do %>
+          <%= tag.h5 job.job_title, class: "card-title text-dark" %>
+        <% end %>
+        <%= tag.h6 job.company_name, class: "card-subtitle mb-2 text-muted" %>
+        <%= tag.p "#{job.description[0..97]}...", class: "card-text text-dark" %>
+        <% if job.user_id == current_user.id %>
+          <%= link_to "edit", edit_job_path(job), class: "btn btn-primary" %>
+          <%= link_to "delete", job_path(job), class: "btn btn-primary", method: :delete, onclick: "return confirm('are you sure you want to delete that quiz');" %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<style>
+  a.job-link{
+    text-decoration: none;
+  }
+</style>

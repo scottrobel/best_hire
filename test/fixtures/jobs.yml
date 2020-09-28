@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company_website_link: MyText
+  description: MyText
+  remote: false
+  company_website_apply_link: MyText
+  contact_email: MyText
+
+two:
+  company_website_link: MyText
+  description: MyText
+  remote: false
+  company_website_apply_link: MyText
+  contact_email: MyText

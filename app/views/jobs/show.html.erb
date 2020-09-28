@@ -1,0 +1,12 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1><%= @job.job_title %></h1>
+    <p class="lead text-muted"><%= @job.company_name %></p>
+    <%= link_to "Visit Company Website", @job.company_website_link, class: "btn btn-primary" %>
+  </div>
+</section>
+<div class="container text-center">
+  <div class="">
+    <%= @job.description %>
+  </div>
+</div>

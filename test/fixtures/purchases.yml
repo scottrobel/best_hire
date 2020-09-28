@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  plan_type: 1
+  user: one
+  checkout_session_id: MyText
+
+two:
+  plan_type: 1
+  user: two
+  checkout_session_id: MyText

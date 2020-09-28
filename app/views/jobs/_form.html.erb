@@ -1,0 +1,56 @@
+<%= form_with(model: job, local: true) do |f| %>
+    <span id="reauth-email" class="reauth-email"></span>
+    <div class="form-group">
+      <%= f.label "Job Title", for: :job_title, class: "mb-0"%>
+      <%= f.text_field :job_title, class: "form-control mb-2", placeholder: "Job Title", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Company Name", for: :company_name, class: "mb-0" %>
+      <%= f.text_field :company_name, class: "form-control mb-2", placeholder: "Company Name", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Company Website Link", for: :company_name, class: "mb-0" %>
+      <%= f.text_field :company_website_link, class: "form-control mb-2", placeholder: "Company Website Link", required: true  %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Hiring Manager Email", for: :contact_email, class: "mb-0" %>
+      <%= f.email_field  :contact_email, class: "form-control mb-2", placeholder: "Hiring Manager Email", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Job Desciption", for: :description, class: "mb-0"%>
+      <%= f.text_area :description, class: "form-control mb-2", placeholder: "Job Description", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label "Company Logo", class: "mb-0" %>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+        </div>
+        <div class="custom-file">
+          <%= f.file_field :company_logo, class: "custom-file-input", id: "inputGroupFile01" %>
+          <label class="custom-file-label" for="inputGroupFile01"><%# job.company_logo.attached? ? "Choose File" :  %>Choose File</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.select :post_type, job.post_type_options, {}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <div id="remember" class="checkbox">
+        <label>
+            <%= f.check_box :remote %> Remote Position?
+        </label>
+      </div>
+    </div>
+    <%= f.submit class: "btn btn-lg btn-primary btn-block btn-signin" %>
+<% end %><!-- /form -->
+<script>
+    $('.custom-file-input').change(function(e){
+      fileField = e.target;
+      files = fileField['files']
+      fileName = files[0]['name']
+      fileFieldId = fileField['id']
+      fileLabel = $(`label[for=${fileFieldId}]`)[0]
+      fileLabel.innerText = fileName
+    })
+</script>
