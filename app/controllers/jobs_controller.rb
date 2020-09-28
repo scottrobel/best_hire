@@ -1,12 +1,13 @@
 class JobsController < ApplicationController
-  #== Callbacks
+#== Callbacks
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
   before_action :require_user_has_credits, only: [:create, :new]
 
-  #== Mixins
+#== Mixins
   include JobsHelper
 
+#== Actions
   # GET /jobs
   # GET /jobs.json
   def index
