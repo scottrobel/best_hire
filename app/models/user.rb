@@ -9,4 +9,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 #== enums
   enum user_type: [:regular_user, :admin_user]
+#== Attribute Defaults
+  attribute :basic_post_credits, :integer, default: 0
+  attribute :plus_post_credits, :integer, default: 0
+  attribute :pro_post_credits, :integer, default: 0
 end
