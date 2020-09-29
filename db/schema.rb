@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_28_073721) do
+ActiveRecord::Schema.define(version: 2020_09_29_014923) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,8 +53,12 @@ ActiveRecord::Schema.define(version: 2020_09_28_073721) do
     t.integer "plan_type"
     t.integer "user_id"
     t.text "checkout_session_id"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+    t.boolean "paid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_intent_id"
     t.index ["user_id"], name: "index_purchases_on_user_id"
   end
 
@@ -66,9 +70,10 @@ ActiveRecord::Schema.define(version: 2020_09_28_073721) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "basic_post_credits"
-    t.integer "plus_post_credits"
-    t.integer "pro_post_credits"
+    t.integer "basic_post_credits", default: 0
+    t.integer "plus_post_credits", default: 0
+    t.integer "pro_post_credits", default: 0
+    t.integer "user_type", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

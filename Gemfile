@@ -69,3 +69,6 @@ gem 'bootstrap', '~> 4.0.0'
 gem 'font-awesome-sass', '~> 5.13.0'
 gem 'devise'
 gem "image_processing"
+gem 'money-rails', '~>1.12'
+gem 'stripe'
+gem 'stripe_event'

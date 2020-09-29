@@ -8,4 +8,12 @@ module JobsHelper
       redirect_to root_path
     end    
   end
+
+  def require_own_post_or_admin
+    user = current_user
+    unless (user.id = @job.user_id || user.admin_user?)
+      flash[:alert] = "You Can Only Edit Your Own Posts"
+      redirect_to root_path
+    end
+  end
 end

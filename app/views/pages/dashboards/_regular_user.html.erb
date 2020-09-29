@@ -1,0 +1,142 @@
+<div class="container-fluid">
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+  <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Basic Posts Remaining</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= current_user.basic_post_credits %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Earnings (Monthly) Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Plus Posts Remaining</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= current_user.plus_post_credits %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Pending Requests Card Example -->
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pro Posts Remaining</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= current_user.pro_post_credits %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+  <h1 class="h3 mb-0 text-gray-800">Your Job Posts</h1>
+</div>
+<div class="d-flex flex-row flex-wrap">
+    <div class="card m-5 shadow" style="width: 18rem;">
+    <%= link_to new_job_path, class: "job-link" do %>
+      <%= image_tag('/plus_photo.png', class: "card-img-top") %>
+      <div class="card-body">
+      <%= tag.h5 "Create New Job Listing", class: "card-title text-dark" %>
+      <%= tag.h6 "Create New Job Listing", class: "card-subtitle mb-2 text-muted" %>
+      <%# tag.p "", class: "card-text text-dark" %>
+    <% end %>
+    </div>
+  </div>
+  <% @jobs.each do |job| %>
+    <div class="card m-5 shadow" style="width: 18rem;">
+      <%= link_to url_for(job), class: "job-link" do %>
+        <%= image_tag(url_for(job.company_logo), class: "card-img-top") %>
+        <div class="card-body">
+        <%= tag.h5 job.job_title, class: "card-title text-dark" %>
+        <%= tag.h6 job.company_name, class: "card-subtitle mb-2 text-muted" %>
+        <%= tag.p "#{job.description[0..97]}...", class: "card-text text-dark" %>
+      <% end %>
+      <% if job.user_id == current_user.id %>
+        <%= link_to "edit", edit_job_path(job), class: "btn btn-primary" %>
+        <%= link_to "delete", job_path(job), class: "btn btn-primary", method: :delete, onclick: "return confirm('are you sure you want to delete that quiz');" %>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+  <h1 class="h3 mb-0 text-gray-800">Purchase More Post Credits</h1>
+</div>
+<section class="pricing py-5">
+  <div class="container">
+    <div class="row">
+      <!-- Free Tier -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Basic</h5>
+            <h6 class="card-price text-center">$10</h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>1 job Posting</strong></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Each post Lasts 2 days</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Upload company logos & header images</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Collect Candidate Phone Numbers and Emails</li>
+            </ul>
+            <%= link_to "Buy Now",new_purchase_path(plan_type: 'basic'), class: "btn btn-block btn-primary text-uppercase" %>
+          </div>
+        </div>
+      </div>
+      <!-- Plus Tier -->
+      <div class="col-lg-4">
+        <div class="card mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Plus</h5>
+            <h6 class="card-price text-center">$20</h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>5 job Postings</strong></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Each post Lasts 10 days</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Upload company logos & header images</li>
+              <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Collect Candidate Phone Numbers and Emails</li>
+            </ul>
+            <%= link_to "Buy Now",new_purchase_path(plan_type: 'plus'), class: "btn btn-block btn-primary text-uppercase" %>
+          </div>
+        </div>
+      </div>
+      <!-- Pro Tier -->
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-uppercase text-center">Pro</h5>
+            <h6 class="card-price text-center">$30</h6>
+            <hr>
+            <ul class="fa-ul">
+              <li><span class="fa-li"><i class="fas fa-check"></i></span><strong>20 job Postings</strong></li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Each post Lasts 30 days</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Upload company logos & header images</li>
+              <li><span class="fa-li"><i class="fas fa-check"></i></span>Collect Candidate Phone Numbers and Emails</li>
+            </ul>
+            <%= link_to "Buy Now",new_purchase_path(plan_type: 'pro'), class: "btn btn-block btn-primary text-uppercase" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

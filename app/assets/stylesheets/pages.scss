@@ -1,7 +1,7 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-section.pricing {
+section.home-pricing {
   background: #007bff;
   background: linear-gradient(to right, #0062E6, #33AEFF);
 }
@@ -10,7 +10,7 @@ section.pricing {
   border: none;
   border-radius: 1rem;
   transition: all 0.2s;
-  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.5);
 }
 
 .pricing hr {
@@ -57,7 +57,7 @@ section.pricing {
   .pricing .card:hover {
     margin-top: -.25rem;
     margin-bottom: .25rem;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.8);
   }
   .pricing .card:hover .btn {
     opacity: 1;

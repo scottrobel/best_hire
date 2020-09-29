@@ -11,7 +11,7 @@
       <% end %>
     </div>
   </section>
-<section class="pricing py-5">
+<section class="home-pricing pricing py-5">
   <div class="container">
     <div class="row">
       <!-- Free Tier -->
@@ -27,7 +27,7 @@
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Upload company logos & header images</li>
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Collect Candidate Phone Numbers and Emails</li>
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Buy Now</a>
+            <%= link_to "Buy Now",new_purchase_path(plan_type: 'basic'), class: "btn btn-block btn-primary text-uppercase" %>
           </div>
         </div>
       </div>
@@ -44,7 +44,7 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span>Upload company logos & header images</li>
               <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>Collect Candidate Phone Numbers and Emails</li>
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Buy Now</a>
+            <%= link_to "Buy Now",new_purchase_path(plan_type: 'plus'), class: "btn btn-block btn-primary text-uppercase" %>
           </div>
         </div>
       </div>
@@ -61,7 +61,7 @@
               <li><span class="fa-li"><i class="fas fa-check"></i></span>Upload company logos & header images</li>
               <li><span class="fa-li"><i class="fas fa-check"></i></span>Collect Candidate Phone Numbers and Emails</li>
             </ul>
-            <a href="#" class="btn btn-block btn-primary text-uppercase">Buy Now</a>
+            <%= link_to "Buy Now",new_purchase_path(plan_type: 'pro'), class: "btn btn-block btn-primary text-uppercase" %>
           </div>
         </div>
       </div>

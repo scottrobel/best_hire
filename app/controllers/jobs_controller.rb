@@ -3,11 +3,12 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :edit, :update, :destroy, :new]
   before_action :require_user_has_credits, only: [:create, :new]
+  before_action :require_own_post_or_admin, only: [:edit, :update, :destroy]
 
 #== Mixins
   include JobsHelper
 
-#== Actions
+#== Actionshdf
   # GET /jobs
   # GET /jobs.json
   def index
