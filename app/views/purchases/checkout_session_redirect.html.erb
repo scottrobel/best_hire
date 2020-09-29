@@ -1,5 +1,5 @@
 <script>
-    var stripe = Stripe("<%= Rails.application.credentials.stripe[:stripe_production_publishable_key] %>");
+    var stripe = Stripe("<%= ENV['stripe_production_publishable_key'] %>");
     stripe.redirectToCheckout({
       // Make the id field from the Checkout Session creation API response
       // available to this file, so you can provide it as argument here
