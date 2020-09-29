@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="card card-container hidden-form job-application-card">
+        <i class="fas fa-times x-icon form-toggle-button"></i>
+        <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
+        <h2 class="text-center pt-1">Submit Job Application</h2>
+        <%= form_with(model: job_application, local: true, html: {class: "based"}) do |f| %>
+          <span id="reauth-email" class="reauth-email"></span>
+          <div class="form-group">
+            <%= f.label "First Name", for: :first_name, class: "mb-0"%>
+            <%= f.text_field :first_name, class: "form-control mb-2", placeholder: "First Name", required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Last Name", for: :last_name, class: "mb-0" %>
+            <%= f.text_field :last_name, class: "form-control mb-2", placeholder: "Last Name", required: true %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Your Email", for: :email, class: "mb-0" %>
+            <%= f.email_field :email, class: "form-control mb-2", placeholder: "Email", required: true  %>
+          </div>
+          <div class="form-group">
+            <%= f.label "Company Logo", class: "mb-0" %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+              </div>
+              <div class="custom-file">
+                <%= f.file_field :resume, class: "custom-file-input", id: "inputGroupFile01" %>
+                <label class="custom-file-label" for="inputGroupFile01">Choose File</label>
+              </div>
+            </div>
+          </div>
+          <%= f.hidden_field :job_id %>
+          <%= f.submit "Submit Job Application", class: "btn btn-lg btn-primary btn-block btn-signin" %>
+        <% end %><!-- /form -->
+    </div><!-- /card-container -->
+</div><!-- /container -->
+<%= render 'job_applications/form_style' %>
+<script>
+  $('.custom-file-input').change(function(e){
+    fileField = e.target;
+    files = fileField['files']
+    fileName = files[0]['name']
+    fileFieldId = fileField['id']
+    fileLabel = $(`label[for=${fileFieldId}]`)[0]
+    fileLabel.innerText = fileName
+  })
+</script>

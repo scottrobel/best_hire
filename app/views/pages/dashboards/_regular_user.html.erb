@@ -48,6 +48,18 @@
       </div>
     </div>
   </div>
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Job Applications Received</div>
+            <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @applications.count %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
   <h1 class="h3 mb-0 text-gray-800">Your Job Posts</h1>
@@ -80,6 +92,52 @@
     </div>
   <% end %>
 </div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
+  <h1 class="h3 mb-0 text-gray-800">Job Applications Received</h1>
+</div>
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Job Applications</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 88px;">First Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 136px;">Last Name</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 62px;">Email</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Resume</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  <% @applications.each do |application| %>
+                                    <tr role="row" class="odd">
+                                        <td class="sorting_1"><%= application.first_name %></td>
+                                        <td><%= application.last_name %></td>
+                                        <td><%= application.email %></td>
+                                        <td>
+                                          <%= link_to url_for(application.resume), download: true do %>
+                                            <div class="btn btn-outline-primary ml-3">download</div>
+                                          <% end %>
+                                        </td>
+                                    </tr>
+                                  <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-5">
   <h1 class="h3 mb-0 text-gray-800">Purchase More Post Credits</h1>
 </div>

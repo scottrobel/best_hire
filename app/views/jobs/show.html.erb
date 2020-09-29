@@ -3,10 +3,17 @@
     <h1><%= @job.job_title %></h1>
     <p class="lead text-muted"><%= @job.company_name %></p>
     <%= link_to "Visit Company Website", @job.company_website_link, class: "btn btn-primary" %>
+    <%= tag.div "Apply", class: "btn btn-primary form-toggle-button" %>
   </div>
 </section>
+<%= render 'job_applications/form', job_application: @job.job_applications.build %>
 <div class="container text-center">
   <div class="">
     <%= @job.description %>
   </div>
 </div>
+<script>
+  $('.form-toggle-button').click(function(){
+    $('.job-application-card')[0].classList.toggle('hidden-form')
+  })
+</script>

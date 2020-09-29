@@ -54,4 +54,6 @@ class Job < ApplicationRecord
       30.days.from_now
     end
   end
+#== Associations
+  has_many :job_applications
 end

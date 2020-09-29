@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :job_applications
 #== Resources
   resources :purchases
   resources :jobs
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
 
 #== Written Routes
   get '/dashboard', to: 'pages#dashboard', as: :dashboard
+  get '/admin-dashboard', to: 'pages#admin_dashboard', as: :admin_dashboard
 #== Devise User
   devise_for :users
 #== Stripe

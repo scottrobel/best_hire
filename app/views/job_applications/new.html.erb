@@ -1,0 +1,7 @@
+<%= render 'job_applications/form', job_application: @job_application %>
+<div class="form-toggle-button">Click To Make form appear</div>
+<script>
+  $('.form-toggle-button').click(function(){
+    $('.job-application-card')[0].classList.toggle('hidden-card')
+  })
+</script>
