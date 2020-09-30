@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
 #== Associations
   belongs_to :user
-  
+  has_many :job_applications, dependent: :destroy
 #== Enums
   enum post_type: ['basic', 'plus', 'pro']
   

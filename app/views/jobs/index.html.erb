@@ -12,7 +12,6 @@
           <%= tag.h5 job.job_title, class: "card-title text-dark" %>
         <% end %>
         <%= tag.h6 job.company_name, class: "card-subtitle mb-2 text-muted" %>
-        <%= tag.p "#{job.description[0..97]}...", class: "card-text text-dark" %>
         <% if current_user && (job.user_id == current_user.id) %>
           <%= link_to "edit", edit_job_path(job), class: "btn btn-primary" %>
           <%= link_to "delete", job_path(job), class: "btn btn-primary", method: :delete, onclick: "return confirm('are you sure you want to delete that quiz');" %>

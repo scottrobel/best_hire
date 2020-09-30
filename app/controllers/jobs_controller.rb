@@ -33,7 +33,6 @@ class JobsController < ApplicationController
   # POST /jobs.json
   def create
     @job = current_user.jobs.build(job_params)
-
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
@@ -77,6 +76,6 @@ class JobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_params
-      params.require(:job).permit(:post_type, :company_logo, :company_website_link, :description, :remote, :company_website_apply_link, :contact_email, :job_title, :company_name)
+      params.require(:job).permit(:location, :post_type, :company_logo, :company_website_link, :description, :remote, :company_website_apply_link, :contact_email, :job_title, :company_name)
     end
 end

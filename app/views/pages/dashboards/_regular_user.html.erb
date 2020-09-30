@@ -82,7 +82,6 @@
         <div class="card-body">
         <%= tag.h5 job.job_title, class: "card-title text-dark" %>
         <%= tag.h6 job.company_name, class: "card-subtitle mb-2 text-muted" %>
-        <%= tag.p "#{job.description[0..97]}...", class: "card-text text-dark" %>
       <% end %>
       <% if job.user_id == current_user.id %>
         <%= link_to "edit", edit_job_path(job), class: "btn btn-primary" %>
@@ -109,18 +108,22 @@
                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
                                 <thead>
                                     <tr role="row">
-                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 88px;">First Name</th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 88px;">Job Title</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 136px;">First Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 136px;">Last Name</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 62px;">Email</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 62px;">Phone Number</th>
                                         <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 31px;">Resume</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                   <% @applications.each do |application| %>
                                     <tr role="row" class="odd">
+                                        <td class="sorting_1"><%= application.job.job_title %></td>
                                         <td class="sorting_1"><%= application.first_name %></td>
                                         <td><%= application.last_name %></td>
                                         <td><%= application.email %></td>
+                                        <td><%= application.phone_number %></td>
                                         <td>
                                           <%= link_to url_for(application.resume), download: true do %>
                                             <div class="btn btn-outline-primary ml-3">download</div>

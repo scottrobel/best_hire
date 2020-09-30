@@ -18,3 +18,5 @@
 //= require popper
 //= require bootstrap
 //= require bootstrap-sprockets
+//= require quill.min
+//= require quill.global

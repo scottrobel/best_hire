@@ -17,8 +17,14 @@
             <%= f.label "Your Email", for: :email, class: "mb-0" %>
             <%= f.email_field :email, class: "form-control mb-2", placeholder: "Email", required: true  %>
           </div>
+          <% if %w[pro].include?(job_application.job.post_type) %>
+            <div class="form-group">
+              <%= f.label "Your Phone Number", for: :phone_number, class: "mb-0" %>
+              <%= f.text_field :phone_number, class: "form-control mb-2", placeholder: "Phone Number", required: true  %>
+            </div>
+          <% end %>
           <div class="form-group">
-            <%= f.label "Company Logo", class: "mb-0" %>
+            <%= f.label "Resume", class: "mb-0" %>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>

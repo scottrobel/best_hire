@@ -68,9 +68,9 @@ class Purchase < ApplicationRecord
     when 'basic'
       "You are purchasing one Job Post that will last 2 days"
     when 'plus'
-      "You are purchasing five Job Post that will last 10 days"
+      "You are purchasing five Job Post that will last 10 days each"
     when 'pro'
-      "You are purchasing twenty Job Post that will last 30 days"
+      "You are purchasing twenty Job Post that will last 30 days each"
     end
   end
 end
