@@ -4,7 +4,7 @@
     <p class="lead"><%= @job.location %></p>
     <p class="lead text-muted"><%= @job.company_name %></p>
     <%= link_to "Visit Company Website", @job.company_website_link, class: "btn btn-primary" %>
-    <%= tag.div "Apply", class: "btn btn-primary form-toggle-button" %>
+    <%= tag.div "Apply", class: "btn btn-primary form-toggle-button", for: "job-application-form" %>
   </div>
 </section>
 <%= render 'job_applications/form', job_application: @job.job_applications.build %>
@@ -14,7 +14,9 @@
   </div>
 </div>
 <script>
-  $('.form-toggle-button').click(function(){
-    $('.job-application-card')[0].classList.toggle('hidden-form')
+  $('.form-toggle-button').click(function(e){
+    formId = $(e.target).attr('for');
+    console.log(formId);
+    $(`#${formId}`)[0].classList.toggle('hidden-form')
   })
 </script>

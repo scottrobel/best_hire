@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="card card-container hidden-form job-application-card">
-        <i class="fas fa-times x-icon form-toggle-button"></i>
+    <div class="card card-container hidden-form toggle-form" id="job-application-form">
+        <i class="fas fa-times x-icon form-toggle-button" for="job-application-form"></i>
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <h2 class="text-center pt-1">Submit Job Application</h2>
         <%= form_with(model: job_application, local: true, html: {class: "based"}) do |f| %>

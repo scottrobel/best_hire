@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 #== Resources
   resources :purchases
   resources :jobs
+  resources :jobs do
+    resources :job_applications, only: [:index]
+  end
 #== Root Url 
   root to: 'pages#home'
 
