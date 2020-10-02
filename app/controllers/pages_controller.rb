@@ -6,9 +6,7 @@ class PagesController < ApplicationController
 
   def dashboard
     @jobs = Job.all
-    @applications = JobApplication.all \
-      .joins('INNER JOIN jobs ON jobs.id = job_applications.id') \
-      .where('jobs.user_id = ?', current_user.id)
+    @applications = current_user.job_applications
   end
 
   def admin_dashboard
