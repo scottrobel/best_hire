@@ -1,0 +1,16 @@
+$("#hidden-form-container").html("<%= j render 'jobs/new', job: @job %>")
+setTimeout(function(){
+  $('.toggle-form')[0].classList.toggle('hidden-form')
+}, 500)
+$('.form-x-button').click(function(e){
+  if(confirm("Are you sure you want to leave this unsaved job?")){
+    closeForm()
+  }
+})
+function closeForm(){
+  $('.toggle-form')[0].classList.toggle('hidden-form')
+  setTimeout(function(){
+    $("#hidden-form-container").html('')
+  }, 1000)
+}
+Quilljs.loadDefaults();

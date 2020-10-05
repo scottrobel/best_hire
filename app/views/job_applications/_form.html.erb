@@ -17,10 +17,17 @@
             <%= f.label "Your Email", for: :email, class: "mb-0" %>
             <%= f.email_field :email, class: "form-control mb-2", placeholder: "Email", required: true  %>
           </div>
-          <% if %w[pro].include?(job_application.job.post_type) %>
+          <div class="form-group">
+            <%= f.label "Your Phone Number", for: :phone_number, class: "mb-0" %>
+            <%= f.text_field :phone_number, class: "form-control mb-2", placeholder: "Phone Number", required: true  %>
+          </div>
+          <%= f.fields_for :skill_experiences do |se_helper| %>
             <div class="form-group">
-              <%= f.label "Your Phone Number", for: :phone_number, class: "mb-0" %>
-              <%= f.text_field :phone_number, class: "form-control mb-2", placeholder: "Phone Number", required: true  %>
+              <div>
+                <%= "How many years of experence do you have in #{se_helper.object.skill}?" %>
+              </div>
+              <%= se_helper.number_field :experience, class: "form-control mb-2", placeholder: "#{se_helper.object.skill} Experence",value: 1, required: true %>
+              <%= se_helper.hidden_field :skill_id %>
             </div>
           <% end %>
           <div class="form-group">
@@ -30,7 +37,7 @@
                 <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
               </div>
               <div class="custom-file">
-                <%= f.file_field :resume, class: "custom-file-input", id: "inputGroupFile01" %>
+                <%= f.file_field :resume, class: "custom-file-input", id: "inputGroupFile01", required: true %>
                 <label class="custom-file-label" for="inputGroupFile01">Choose File</label>
               </div>
             </div>

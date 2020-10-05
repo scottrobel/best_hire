@@ -1,16 +1,16 @@
-<% if @job.errors.full_messages.any? %>
+<% if job.errors.full_messages.any? %>
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-    <%= @job.errors.full_messages.first %>
+    <%= job.errors.full_messages.first %>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
 <% end %>
 <div class="container">
-    <div class="card card-container">
+    <div class="card card-container toggle-form hidden-form" id="new-job-form">
+        <i class="fas fa-times x-icon fa-2x form-x-button" for="new-job-form"></i>
         <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
         <h2 class="text-center pt-1">Create Job</h2>
-        <%= render 'form', job: @job %>
+        <%= render 'jobs/form', job: job %>
     </div><!-- /card-container -->
 </div><!-- /container -->
-<%= render 'jobs/form_style' %>

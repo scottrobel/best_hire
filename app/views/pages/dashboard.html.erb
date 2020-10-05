@@ -1,2 +1,9 @@
 <%= render "pages/dashboards/regular_user" %>
 <%= render 'pages/dashboard_style' %>
+<%= render 'job_applications/form_style' %>
+<script>
+  $('.form-toggle-button').click(function(e){
+    fetchUrl = $(e.target).attr('fetch-url');
+    $.ajax({url: fetchUrl})
+  })
+</script>

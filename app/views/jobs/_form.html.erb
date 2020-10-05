@@ -1,4 +1,4 @@
-<%= form_with(model: job, local: true) do |f| %>
+<%= form_with(model: job, remote: true) do |f| %>
     <span id="reauth-email" class="reauth-email"></span>
     <div class="form-group">
       <%= f.label "Job Title", for: :job_title, class: "mb-0"%>
@@ -21,13 +21,18 @@
       <%= f.text_field :location, placeholder: "Location", required: true, class: "form-control mb-2" %>
     </div>
     <div class="form-group">
+      <%= f.label "Required Skills", for: :description, class: "mb-0"%>
+      <%= f.text_field :skill_list, placeholder: "Required Skills", class: "form-control mb-0" %>
+      <%= f.label "Example: java, ruby on rails, javascript", for: :description, class: "mb-2 mt-0"%>
+    </div>
+    <div class="form-group">
       <%= f.label "Company Logo", class: "mb-0" %>
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
         </div>
         <div class="custom-file">
-          <%= f.file_field :company_logo, class: "custom-file-input", id: "inputGroupFile01" %>
+          <%= f.file_field :company_logo, class: "custom-file-input", id: "inputGroupFile01"%>
           <label class="custom-file-label" for="inputGroupFile01">Choose File</label>
         </div>
       </div>
@@ -38,7 +43,7 @@
     </div>
     <div class="form-group">
       <%= f.label "Job Desciption", for: :description, class: "mb-0"%>
-      <%= f.text_field :description, class: "quill_container", placeholder: "Job Description", required: true %>
+      <%= f.text_area :description, class: "quill_container", placeholder: "Job Description" %>
     </div>
     <div class="form-group">
       <div id="remember" class="checkbox">

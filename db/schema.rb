@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_225652) do
+ActiveRecord::Schema.define(version: 2020_10_05_035103) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -44,6 +44,15 @@ ActiveRecord::Schema.define(version: 2020_09_29_225652) do
     t.index ["job_id"], name: "index_job_applications_on_job_id"
   end
 
+  create_table "job_skills", force: :cascade do |t|
+    t.integer "job_id"
+    t.integer "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_job_skills_on_job_id"
+    t.index ["skill_id"], name: "index_job_skills_on_skill_id"
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.text "company_website_link"
     t.text "description"
@@ -72,6 +81,22 @@ ActiveRecord::Schema.define(version: 2020_09_29_225652) do
     t.datetime "updated_at", null: false
     t.string "payment_intent_id"
     t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
+  create_table "skill_experiences", force: :cascade do |t|
+    t.integer "job_application_id"
+    t.integer "skill_id"
+    t.integer "experience"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_application_id"], name: "index_skill_experiences_on_job_application_id"
+    t.index ["skill_id"], name: "index_skill_experiences_on_skill_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

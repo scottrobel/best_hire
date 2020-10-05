@@ -7,7 +7,7 @@
     <%= tag.div "Apply", class: "btn btn-primary form-toggle-button", for: "job-application-form" %>
   </div>
 </section>
-<%= render 'job_applications/form', job_application: @job.job_applications.build %>
+<%= render 'job_applications/form', job_application: @job_application %>
 <div class="container">
   <div class="">
     <%= @job.description.html_safe %>

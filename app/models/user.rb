@@ -14,4 +14,6 @@ class User < ApplicationRecord
   attribute :basic_post_credits, :integer, default: 0
   attribute :plus_post_credits, :integer, default: 0
   attribute :pro_post_credits, :integer, default: 0
+#== Callbacks
+  before_create ->{ self.basic_post_credits = 5 }
 end

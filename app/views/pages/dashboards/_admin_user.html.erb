@@ -10,7 +10,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (This Month)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Purchase.new(price_cents: Purchase.where("created_at > ?", 30.days.ago).sum('purchases.price_cents')).price.format %></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @monthly_earnings %></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -27,7 +27,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings (Annual)</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Purchase.new(price_cents: Purchase.where("created_at > ?", 365.days.ago).sum('purchases.price_cents')).price.format %></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @yearly_earnings %></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -44,7 +44,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pack Purchases</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Purchase.count %></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @purchase_count %></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -61,7 +61,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Jobs Posted</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= Job.count %></div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"><%= @job_count %></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -92,7 +92,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  <% Purchase.where(paid: true).includes(:user).each do |purchase| %>
+                                  <% @purchases.each do |purchase| %>
                                     <tr role="row" class="odd">
                                         <td class="sorting_1"><%= purchase.plan_type %></td>
                                         <td><%= purchase.price.format %></td>

@@ -18,29 +18,42 @@ class JobsController < ApplicationController
   # GET /jobs/1
   # GET /jobs/1.json
   def show
+    @job_application = @job.job_applications.build
+    skill_experiences = @job.skills.map(&:skill_experiences).map(&:build)
+    @job_application.skill_experiences = skill_experiences
   end
 
   # GET /jobs/new
   def new
     @job = current_user.jobs.build
+    respond_to do |format|
+      format.js{ render 'jobs/new' }
+      format.html{  }
+    end
   end
 
   # GET /jobs/1/edit
   def edit
+    respond_to do |format|
+      format.js{ render 'jobs/edit' }
+    end
   end
 
   # POST /jobs
   # POST /jobs.json
   def create
-    @job = current_user.jobs.build(job_params)
     respond_to do |format|
-      if @job.save
-        format.html { redirect_to @job, notice: 'Job was successfully created.' }
-        format.json { render :show, status: :created, location: @job }
+      @new_job = current_user.jobs.build(job_params)
+      if !@new_job.company_logo.attached?
+        flash.now[:alert] = "Please Attach a Company Logo"
       else
-        format.html { render :new }
-        format.json { render json: @job.errors, status: :unprocessable_entity }
+        if @new_job.save
+          flash.now[:notice] = "Job Posted!"
+        else
+          flash.now[:alert] = @new_job.errors.full_messages.first
+        end
       end
+      format.js{  }
     end
   end
 
@@ -49,10 +62,10 @@ class JobsController < ApplicationController
   def update
     respond_to do |format|
       if @job.update(job_params)
-        format.html { redirect_to @job, notice: 'Job was successfully updated.' }
+        format.html { redirect_to dashboard_path, notice: 'Job was successfully updated.' }
         format.json { render :show, status: :ok, location: @job }
       else
-        format.html { render :edit }
+        format.html { render 'pages/dashboard' }
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
@@ -76,6 +89,6 @@ class JobsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def job_params
-      params.require(:job).permit(:location, :post_type, :company_logo, :company_website_link, :description, :remote, :company_website_apply_link, :contact_email, :job_title, :company_name)
+      params.require(:job).permit(:skill_list, :location, :post_type, :company_logo, :company_website_link, :description, :remote, :company_website_apply_link, :contact_email, :job_title, :company_name)
     end
 end

@@ -2,6 +2,8 @@ class Job < ApplicationRecord
 #== Associations
   belongs_to :user
   has_many :job_applications, dependent: :destroy
+  has_many :job_skills, dependent: :destroy
+  has_many :skills, through: :job_skills
 #== Enums
   enum post_type: ['basic', 'plus', 'pro']
   
@@ -9,7 +11,7 @@ class Job < ApplicationRecord
   has_one_attached :company_logo
   
 #== Validations
-  validates :company_website_link, :description, :contact_email, :job_title, :company_name, :post_type,  presence: true
+  validates :company_logo, :company_website_link, :description, :contact_email, :job_title, :company_name, :post_type,  presence: true
   
 #== Callbacks
   after_create :update_user_credits
@@ -32,6 +34,16 @@ class Job < ApplicationRecord
       post_options << ["Pro Post (Lasts 30 days)(#{pro_posts_remaining} remaining)", "pro"]
     end
     post_options
+  end
+
+  def skill_list=(skills_string)
+    skill_names = skills_string.downcase.split(',').map(&:strip).uniq
+    new_or_found_skills = skill_names.map{|name| Skill.find_or_create_by(name: name)}
+    self.skills = new_or_found_skills
+  end
+
+  def skill_list
+    self.skills.join(', ')
   end
 #== Call back methods
   def update_user_credits

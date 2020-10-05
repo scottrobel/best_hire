@@ -1,0 +1,17 @@
+function closeForm(){
+  $('.toggle-form')[0].classList.toggle('hidden-form')
+  setTimeout(function(){
+    $("#hidden-form-container").html('')
+  }, 1000)
+}
+function topFunction() {
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+}
+<% if flash[:alert] %>
+  alert("<%= flash[:alert] %>")
+<%  else %>
+  closeForm();
+  topFunction();
+  $("#flash-container").html("<%= j render 'layouts/flash' %>")
+<% end %>

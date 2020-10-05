@@ -1,0 +1,10 @@
+$("#hidden-form-container").html("<%= j render 'job_applications/index', job_id: @job.id, job_applications: @job_applications %>")
+setTimeout(function(){
+  $('.toggle-form')[0].classList.toggle('hidden-form')
+}, 50)
+$('.form-x-button').click(function(e){
+  $('.toggle-form')[0].classList.toggle('hidden-form')
+  setTimeout(function(){
+    $("#hidden-form-container").html('')
+  }, 1000)
+})
