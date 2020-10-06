@@ -21,11 +21,11 @@ class Purchase < ApplicationRecord
     self.price_cents = \
     case self.plan_type
     when 'basic'
-      1000
+      4900
     when 'plus'
-      2000
+      7400
     when 'pro'
-      3000
+      9900
     end
   end
 
