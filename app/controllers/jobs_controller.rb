@@ -8,7 +8,7 @@ class JobsController < ApplicationController
 #== Mixins
   include JobsHelper
 
-#== Actionshdf
+#== Actions
   # GET /jobs
   # GET /jobs.json
   def index

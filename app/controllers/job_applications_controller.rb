@@ -20,6 +20,8 @@ class JobApplicationsController < ApplicationController
 
   def index
     @job_applications = @job.job_applications
+    @job_application_search = JobApplicationSearch.new(job: @job)
+    @job_application_search.set_skill_requirements
     respond_to do |format|
       format.js { render 'job_applications/index'}
     end

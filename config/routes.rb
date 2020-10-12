@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 #== Resources
   resources :purchases
   resources :jobs
+  resources :job_application_searches, only: [:new, :create]
   resources :jobs do
     resources :job_applications, only: [:index]
   end
